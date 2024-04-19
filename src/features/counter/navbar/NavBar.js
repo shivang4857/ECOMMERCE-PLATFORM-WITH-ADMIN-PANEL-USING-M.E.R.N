@@ -1,8 +1,7 @@
+import React from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-
+import { Bars3Icon, BellIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const user = {
   name: 'Tom Cook',
@@ -23,18 +22,23 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
-  
-
+  return classes.filter(Boolean).join(' ')
+}
 
 const NavBar = () => {
   return (
     <div>
-        <>
-        <div className="min-h-full">
+       <>
+      {/*
+        This example requires updating your template:
+
+        ```
+        <html class="h-full bg-gray-100">
+        <body class="h-full">
+        ```
+      */}
+      <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -76,8 +80,11 @@ const NavBar = () => {
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
+                        <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
+                      <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+        Badge
+      </span>
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
@@ -195,9 +202,8 @@ const NavBar = () => {
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
         </main>
       </div>
-        
-        
-        </>
+    </>
+      
     </div>
   )
 }
