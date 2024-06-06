@@ -1,11 +1,13 @@
 import NavBar
- from "../features/counter/navbar/NavBar";
-import ProductDetails from "../features/counter/product list/components/ProductDetails";
+ from "../features/navbar/NavBar";
+import ProductDetails from "../features/product/components/ProductDetails";
 function ProductDetailPage() {
     return ( 
         <div>
             <NavBar>
-                <ProductDetails></ProductDetails>
+                <ProductDetails>
+                    hello
+                </ProductDetails>
             </NavBar>
         </div>
      );
