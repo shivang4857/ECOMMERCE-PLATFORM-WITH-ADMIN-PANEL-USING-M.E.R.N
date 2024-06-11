@@ -1,0 +1,23 @@
+00:00 How to Code this Project
+09:09 Setup React/Tailwind and initial Pages
+34:23 Login/Sigup Pages/ React  Routing
+42:47 Cart Page
+52:52 Checkout Page
+01:15:20 Redux / Async Thunk and JSON server
+01:52:08 Product page changes and filters
+02:13:06 Pagination
+02:30:10 Brands and Category
+02:41:25 Product details page
+02:54:10 User API, Login/ Signup Pages
+03:22:25 Cart Add /Update/ Remove items
+03:47:09 Checkout Page/ Orders
+04:19:30 Order Success and My Orders
+04:54:20 User Profile
+05:26:00 Logout Forgot Password
+05:35:00 Admin Panel pages
+06:28:35 Admin Orders page
+07:19:05 Node Backend Setup/ Mongoose / REST APIs
+09:22:35 Passport JS / JWT
+09:53:44 React Authentication with Cookies
+10:35:05:00 Stripe Payment Integration
+11:11:33 Live Server Deploymen
