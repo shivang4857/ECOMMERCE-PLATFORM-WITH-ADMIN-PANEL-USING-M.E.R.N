@@ -26,7 +26,7 @@ export function fetchProductsByFilters(filter,pagination) {
   //filter = {category : smarphones}
   let queryString = ""
   for(let key in filter){
-    const categoryValues = filter[key];
+    const categoryValues = filter[key]; 
     if(categoryValues.length){
       const lastCategoryValue = categoryValues[categoryValues.length-1]
       queryString += `${key}=${lastCategoryValue}&`

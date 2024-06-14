@@ -97,26 +97,12 @@ const ProductList = () => {
   const products = useSelector(selectAllProducts);
   const totalItems = useSelector(selectTotalItems);
 
-  const handleFilter = (e, section, option) => {
-    console.log(e.target.checked);
-    const newFilter = { ...filter };
-    
-    if (e.target.checked) {
-      if (newFilter[section.id]) {
-        newFilter[section.id].push(option.value);
-      } else {
-        newFilter[section.id] = [option.value];
-      }
-    } else {
-      const index = newFilter[section.id].findIndex(
-        (el) => el === option.value
-      );
-      newFilter[section.id].splice(index, 1);
-    }
-    console.log({ newFilter });
+  const handleFilter = (e,section,option)=>{
+    const newFilter = { ...filter, [section.id]: option.value };
     setFilter(newFilter);
-  };
-
+     dispatch(fetchProductsByFiltersAsync(newFilter))
+    console.log(section.id ,option.value)
+ }
 
   const handlePage = (page) => {
     setPage(page);
@@ -125,7 +111,7 @@ const ProductList = () => {
   useEffect(() => {
     const pagination = { _limit: ITEMS_PER_PAGE, _skip: page * 10 };
     dispatch(fetchProductsByFiltersAsync({ filter , pagination }));
-  }, [dispatch, filter, page]);
+  }, [dispatch,filter, page]);
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   return (
