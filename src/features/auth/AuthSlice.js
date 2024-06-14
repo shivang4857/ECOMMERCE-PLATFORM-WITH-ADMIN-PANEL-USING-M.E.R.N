@@ -14,7 +14,7 @@ const initialState = {
     async (userData) => {
       const response = await createUser(userData);
       // The value we return becomes the `fulfilled` action payload
-      return response.data.data;
+      return response.data;
     }
   );
 

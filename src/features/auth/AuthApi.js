@@ -1,7 +1,7 @@
 export async function createUser(userData) {
   try {
       const response = await fetch('http://localhost:8080/users', {
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify(userData),
           headers: { 'Content-Type': 'application/json' },
       });
@@ -23,21 +23,37 @@ export async function createUser(userData) {
 }
 
 export function checkUser(loginInfo) {
-  return new Promise(async (resolve, reject) => {
-    const email = loginInfo.email;
-    const password = loginInfo.password;
-    const response = await fetch('http://localhost:8080/users?email=' + email);
-    const data = await response.json();
-    console.log({data})
-    if (data.length) {
-      if (password === data[0].password) {
-        resolve({ data: data[0] });
-      } else {
-        reject({ message: 'wrong credentials' });
+  const email = loginInfo.email;
+  const password = loginInfo.password;
+
+  return fetch(`http://localhost:8080/users?email=${encodeURIComponent(email)}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch user');
       }
-    } else {
-      reject({ message: 'user not found' });
-    }
-    // TODO: on server it will only return some info of user (not password)
-  });
+      return response.json();
+    })
+    .then(data => {
+      console.log({ data });
+
+      if (data.length === 0) {
+        throw new Error('User not found');
+      }
+
+      const user = data[0];
+
+      // Assuming the API does not return the password and we need to handle authentication differently
+      // You should ideally verify the password on the server side and return a token if valid
+      if (password === user.password) {
+        // Don't return the password back in the response
+        const { password, ...userInfo } = user;
+        return { data: userInfo };
+      } else {
+        throw new Error('Wrong credentials');
+      }
+    })
+    .catch(error => {
+      console.error('Error checking user:', error);
+      throw error;
+    });
 }
